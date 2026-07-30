@@ -44,6 +44,7 @@ The application is divided across the two processor cores. Core 1 executes the f
 | D     | Maintenance Logging        | 100         | 19262              | 25040.6               | 100 ms   | 2        | 1    |
 
 Using base WCET values: U = (584/1000/10) + (3913/1000/20) + (9085/1000/50) + (19262/1000/100) = 0.6284
+
 Using +30% WCET values: U = (759.2/1000/10) + (5086.9/1000/20) + (11810.5/1000/50) + (25040.6/1000/100) = 0.8169
 
 Schedulable under EDF (U<1) and under RMS based on measured WCET values. Response-time analysis confirms that all tasks meet their deadlines, including the lowest priority (Task D).
@@ -71,6 +72,7 @@ Schedulable under EDF (U<1) and under RMS based on measured WCET values. Respons
 To demonstrate graceful degradation, the system was evaluated under increased execution times by applying a 30% margin to each task's measured WCET. Although the resulting processor utilization exceeded the Liu-Layland RMS utilization bound, Response-Time Analysis confirmed that every periodic task continued to complete before its deadline. Rather than failing immediately when processor demand increased, the system maintained correct operation and predictable timing behavior, demonstrating flexibility under heavier loads. 
 
 ## Build & run
+
 Target: ESP32
 
 Framework: ESP-IDF
