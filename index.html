@@ -44,7 +44,7 @@
 
             A real-time embedded control system built on Wokwi using
             FreeRTOS. This portfolio is based on Application 2, demonstrating
-            deterministic scheduling, task prioritization,
+            deterministic scheduling, task prioritization, WCET analysis,
             and preemption detection for theme park and ride control applications
 
         </p>
@@ -99,12 +99,12 @@
 
         <div class="card">
 
-            <h3>Dispatch Monitoring</h3>
+            <h3>Fixed-Priority Scheduling</h3>
 
             <p>
 
-                Performs continuous safety verification every
-                10 milliseconds before allowing operation.
+                Four periodic FreeRTOS tasks execute using fixed priorities to
+                simulate a real-time industrial control application.
 
             </p>
 
@@ -112,12 +112,12 @@
 
         <div class="card">
 
-            <h3>Motor Speed Control</h3>
+            <h3>WCET Measurement</h3>
 
             <p>
 
-                Controls simulated ride motion using deterministic
-                periodic scheduling.
+                Worst-case execution times were measured directly on Wokwi and
+                used for schedulability analysis.
 
             </p>
 
@@ -125,12 +125,12 @@
 
         <div class="card">
 
-            <h3>Operator Display</h3>
+            <h3>Deterministic Timing</h3>
 
             <p>
 
-                Refreshes operator status information at
-                50 millisecond intervals.
+                Each task executes at a defined period ranging from 10 ms to
+                100 ms while meeting its deadline.
 
             </p>
 
@@ -138,12 +138,12 @@
 
         <div class="card">
 
-            <h3>Maintenance Logging</h3>
+            <h3>Schedulability Analysis</h3>
 
             <p>
 
-                Records operating information and diagnostics for
-                maintenance analysis.
+                Processor utilization was evaluated using RMS, EDF,
+                and Response-Time Analysis.
 
             </p>
 
@@ -151,12 +151,12 @@
 
         <div class="card">
 
-            <h3>Emergency Stop ISR</h3>
+            <h3>Real-Time Monitoring</h3>
 
             <p>
 
-                Immediate interrupt response using direct task
-                notifications to achieve deterministic latency.
+                Execution timing and heartbeat information are displayed through the
+                serial monitor and web dashboard.
 
             </p>
 
@@ -237,47 +237,72 @@
 
     <table>
 
-        <tr>
+     <tr>
 
-            <th>Hazard</th>
-            <th>Mitigation</th>
+<th>Potential Hazard</th>
+<th>Mitigation</th>
 
-        </tr>
+</tr>
 
-        <tr>
+<tr>
 
-            <td>Dispatch sensor failure</td>
-            <td>Immediate emergency stop and operator notification.</td>
+<td>Missed dispatch safety checks</td>
 
-        </tr>
+<td>
 
-        <tr>
+Highest priority task executes every 10 ms.
 
-            <td>Button bounce</td>
-            <td>Interrupt debounce filtering.</td>
+</td>
 
-        </tr>
+</tr>
 
-        <tr>
+<tr>
 
-            <td>Task overrun</td>
-            <td>Priority-based scheduling with measured WCET.</td>
+<td>Motor control delays</td>
 
-        </tr>
+<td>
 
-        <tr>
+20 ms periodic control task with deterministic scheduling.
 
-            <td>Communication fault</td>
-            <td>Graceful degradation while maintaining safety tasks.</td>
+</td>
 
-        </tr>
+</tr>
 
-        <tr>
+<tr>
 
-            <td>Processor overload</td>
-            <td>Critical tasks execute before background logging.</td>
+<td>Display update latency</td>
 
-        </tr>
+<td>
+
+Lower priority than control tasks to prevent interference.
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>High processor utilization</td>
+
+<td>
+
+Verified using measured WCET values and utilization analysis.
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>Background logging interference</td>
+
+<td>
+
+Maintenance logging executes as the lowest-priority task.
+
+</td>
+
+</tr>
 
     </table>
 
