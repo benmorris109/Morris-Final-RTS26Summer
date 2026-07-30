@@ -360,19 +360,37 @@ Maintenance logging executes as the lowest-priority task.
 
     <h2>Future Improvements</h2>
 
-    <ul>
-
-        <li>Add physical sensors and actuators.</li>
-
-        <li>Implement CAN bus communication.</li>
-
-        <li>Add remote diagnostics over Wi-Fi.</li>
-
-        <li>Support redundant safety monitoring.</li>
-
-        <li>Deploy on industrial hardware.</li>
-
-    </ul>
+    <p>
+        Throughout this course, I gained a much deeper understanding of how real-time embedded systems are designed, analyzed, and verified. Before taking this course, I had experience with writing 
+        embedded programs to produce a correct output, but I had not considered whether they could meet timing requirements. Learning about deterministic timing, worst-case execution time, processor utilization, 
+        and analysis changed how I view embedded software. I understand that in real-time applications, producing the correct result is only part of the desired goal, and the result must also be produced to meet 
+        strict deadlines. 
+    </p>
+    <p>
+        This final capstone project brought together many of the concepts introduced throughout the semester into a single application. Designing multiple FreeRTOS tasks with different execution periods and 
+        priorities demonstrated how a scheduler works with workloads while ensuring critical tasks always execute first. Even though this project was based on Application 2, something we had previously completed, 
+        looking back on it and viewing it from a different light helped expand on the topics. Measuring the WCET of each task instead of estimating execution times showed the importance of using real data when 
+        evaluating system performance. Applying RMS, EDF, and RTA to the measured times connected the theoretical concepts from this class to the actual practical behavior of the system.
+    </p>
+    <p>
+        One of the more challenging aspects of the course was learning how different synchronization primitives fit together. While writing code, using the built APIs is simple, but understanding why one primitive 
+        should be used over another is complicated. Comparing these primitives forced me to consider latency, resource ownership, and scalability rather than just making the code function correctly. Something that 
+        was challenging about this specific project was measuring execution times and verifying scheduling behavior. This required much more analysis than I had initially expected, and it became clear that designing 
+        a real-time system involves a lot of analysis along with implementation. 
+    </p>
+    <p>
+        If I were to complete this project again, I think I would spend more time planning the software architecture before writing code to execute it. During development I focused on implementing individual tasks 
+        first and working on the overall organization later. Creating more detailed designs earlier might have simplified the integration and reduced the amount of restructuring that I had to do towards the end of 
+        the project. Another thing I would do differently is actually expand upon the built system from application 2 by including some of the later concepts in the other applications. It would be interesting to 
+        integrate this onto physical hardware with actual sensors to see how the scheduling and timing analysis can be evaluated under practical operating conditions. I would also want to include interrupt-driven 
+        programming and using some of the synchronization primitives to make the system more complex and perform more functions. 
+    </p>
+    <p>
+        The most valuable lesson I learned is that successful embedded projects are built on predictability and timing rather than just functionality. A program that works often is not sufficient for applications 
+        such as in ride control systems and other areas of the themed entertainment industry. Safety systems cannot be run this way on a major scale. Instead, engineers must demonstrate that software consistently 
+        meets strict timing requirements. Understanding how to measure WCET, analyze utilization, assign task priorities, and verify scheduling has given me a strong basis in real-time systems engineering. These are 
+        skills that extend beyond this course and are extremely valuable in future embedded projects and ride control systems. 
+    </p>
 
 </section>
 
