@@ -71,22 +71,43 @@
 
     <p>
 
-        This project represents the final integration capstone for
-        EEL 4775 Real-Time Systems.
-
-        The system combines concepts developed throughout the semester
-        into one embedded application executing on an ESP32 running
-        FreeRTOS.
+       This project was developed as the final integration capstone for EEL4775 – Real-Time Systems. It is based on the previously completed Application 2 and demonstrates the design, 
+        implementation, and analysis of a real-time scheduling application using the ESP32 simulator on Wokwi. This project follows the theme of an industrial amusement ride control system 
+        and upholds this theme by tailoring task names and functions to commonly found tasks for a ride control system. It models the architecture of a ride control system by separating critical 
+        system functions into independent tasks with different execution rates and priorities. Rather than focusing on the complexity and functionality of the hardware, this project mainly looks at task 
+        execution, scheduling techniques, and timing predictability. These are fundamental concepts that are used in embedded control systems across many different fields, including themed entertainment engineering. 
 
     </p>
 
     <p>
 
-        The controller simulates an industrial ride control system where
-        multiple periodic tasks monitor safety conditions, regulate motor
-        operation, update operator displays, maintain diagnostic logs,
-        and respond immediately to emergency stop events.
+        This application executes four periodic FreeRTOS tasks that are pinned to core 1 of the ESP32. The highest priority task performs a dispatch interlock check every 10 milliseconds to represent 
+        a safety-critical operation. A second task handles the motor speed control every 20 milliseconds, simulating the continuous process of ride motion. The next task is a lower-priority task that refreshes 
+        the operator display every 50 milliseconds. The lowest priority task executes every 100 milliseconds and records and logs maintenance information. Assigning these different priorities and execution periods 
+        allows the scheduler to ensure that time-critical operations preempt lower-priority background activities when it is necessary. 
 
+    </p>
+
+    <p>
+
+        Core 0 of the ESP32 is reserved for system monitoring and interaction with the user. Depending on the selected configuration, the application will either output the task statistics through the serial 
+        monitor on Wokwi or it will host an HTTP server that displays the scheduling information through a web browser. By separating the monitoring functionality from the real-time control tasks, we can prevent 
+        background and diagnostic operations from interfering with the deterministic scheduling of the critical tasks. It also provides visibility into the system’s performance while it executes. 
+        
+    </p>
+
+    <p>
+        The main objective of this project is to validate that the design of this system satisfies real-time timing requirements. Worst-case execution times (WCET) were measured for each task rather than estimated, 
+        which can then be used to calculate processor utilization information. These measurements were used to evaluate the ride control system using Rate Monotonic Scheduling (RMS), Earliest Deadline First (EDF), 
+        and Response-Time Analysis (RTA). These statistics and calculations can be found in the README of the Wokwi project, some of which are mirrored in the GitHub README. Performing these analyses demonstrates that 
+        the selected task periods and priorities create a predictable execution pattern while meeting timing constraints under the measured workload. 
+    </p>
+
+    <p>
+        Overall, this project demonstrates a practical application of real-time scheduling theory by relating it to an embedded ride control system. By combining periodic task design, fixed-priority scheduling, 
+        timing analysis, processor utilization measurements, and monitoring in a single application, the project illustrates many of the engineering principles required for a consistent embedded system. 
+        The architecture is representative of techniques and ideas that are used in safety-related control systems in the themed entertainment industry. This makes it a strong basis for future extensions such as 
+        interrupt-driven safety handling, sensor integration, network communication, and actual deployment on physical hardware. 
     </p>
 
 </section>
