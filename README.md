@@ -43,6 +43,7 @@ The application is divided across the two processor cores. Core 1 executes the f
 | C     | Operator-Display Refresh   | 50          | 9085               | 11810.5               | 50 ms    | 5        | 1    |
 | D     | Maintenance Logging        | 100         | 19262              | 25040.6               | 100 ms   | 2        | 1    |
 
+
 Using base WCET values: U = (584/1000/10) + (3913/1000/20) + (9085/1000/50) + (19262/1000/100) = 0.6284
 
 Using +30% WCET values: U = (759.2/1000/10) + (5086.9/1000/20) + (11810.5/1000/50) + (25040.6/1000/100) = 0.8169
