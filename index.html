@@ -1,1 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Industrial Ride Control System | Real-Time Systems Final</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <nav>
+
+        <h1>Industrial Ride Control System</h1>
+
+        <ul>
+
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#architecture">Architecture</a></li>
+            <li><a href="#tasks">Tasks</a></li>
+            <li><a href="#hazards">Hazards</a></li>
+            <li><a href="#demo">Demo</a></li>
+
+        </ul>
+
+    </nav>
+
+</header>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h2>Industrial Ride Control System</h2>
+
+        <p>
+
+            A real-time embedded control system built on an ESP32 using
+            FreeRTOS to demonstrate deterministic scheduling,
+            interrupt-driven safety handling,
+            task prioritization,
+            fault detection,
+            and graceful degradation for industrial automation
+            and amusement ride applications.
+
+        </p>
+
+        <div class="buttons">
+
+            <a class="button" href="https://wokwi.com/" target="_blank">
+                Launch Wokwi
+            </a>
+
+            <a class="button secondary" href="#">
+                Watch Demo
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="overview">
+
+    <h2>Project Overview</h2>
+
+    <p>
+
+        This project represents the final integration capstone for
+        EEL 4775 Real-Time Systems.
+
+        The system combines concepts developed throughout the semester
+        into one embedded application executing on an ESP32 running
+        FreeRTOS.
+
+    </p>
+
+    <p>
+
+        The controller simulates an industrial ride control system where
+        multiple periodic tasks monitor safety conditions, regulate motor
+        operation, update operator displays, maintain diagnostic logs,
+        and respond immediately to emergency stop events.
+
+    </p>
+
+</section>
+
+<section id="features">
+
+    <h2>System Features</h2>
+
+    <div class="card-container">
+
+        <div class="card">
+
+            <h3>Dispatch Monitoring</h3>
+
+            <p>
+
+                Performs continuous safety verification every
+                10 milliseconds before allowing operation.
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Motor Speed Control</h3>
+
+            <p>
+
+                Controls simulated ride motion using deterministic
+                periodic scheduling.
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Operator Display</h3>
+
+            <p>
+
+                Refreshes operator status information at
+                50 millisecond intervals.
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Maintenance Logging</h3>
+
+            <p>
+
+                Records operating information and diagnostics for
+                maintenance analysis.
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Emergency Stop ISR</h3>
+
+            <p>
+
+                Immediate interrupt response using direct task
+                notifications to achieve deterministic latency.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="architecture">
+
+    <h2>System Architecture</h2>
+
+    <img src="architecture.svg"
+         alt="System Architecture Diagram"
+         class="architecture">
+
+</section>
+
+<section id="tasks">
+
+    <h2>Real-Time Task Schedule</h2>
+
+    <table>
+
+        <tr>
+
+            <th>Task</th>
+            <th>Period</th>
+            <th>WCET</th>
+            <th>Priority</th>
+
+        </tr>
+
+        <tr>
+
+            <td>Dispatch Interlock Check</td>
+            <td>10 ms</td>
+            <td>584 μs</td>
+            <td>15</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Motor Speed Control</td>
+            <td>20 ms</td>
+            <td>3913 μs</td>
+            <td>10</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Operator Display Refresh</td>
+            <td>50 ms</td>
+            <td>9085 μs</td>
+            <td>5</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Maintenance Logging</td>
+            <td>100 ms</td>
+            <td>19262 μs</td>
+            <td>2</td>
+
+        </tr>
+
+    </table>
+
+</section>
+
+<section id="hazards">
+
+    <h2>Hazard Analysis</h2>
+
+    <table>
+
+        <tr>
+
+            <th>Hazard</th>
+            <th>Mitigation</th>
+
+        </tr>
+
+        <tr>
+
+            <td>Dispatch sensor failure</td>
+            <td>Immediate emergency stop and operator notification.</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Button bounce</td>
+            <td>Interrupt debounce filtering.</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Task overrun</td>
+            <td>Priority-based scheduling with measured WCET.</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Communication fault</td>
+            <td>Graceful degradation while maintaining safety tasks.</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Processor overload</td>
+            <td>Critical tasks execute before background logging.</td>
+
+        </tr>
+
+    </table>
+
+</section>
+
+<section id="demo">
+
+    <h2>Project Demonstration</h2>
+
+    <p>
+
+        Replace the placeholders below with your final
+        YouTube video and Wokwi project.
+
+    </p>
+
+    <div class="buttons">
+
+        <a class="button"
+           href="https://wokwi.com/"
+           target="_blank">
+
+            Open Wokwi Simulation
+
+        </a>
+
+        <a class="button secondary"
+           href="#">
+
+            Watch Demonstration Video
+
+        </a>
+
+    </div>
+
+</section>
+
+<section id="future">
+
+    <h2>Future Improvements</h2>
+
+    <ul>
+
+        <li>Add physical sensors and actuators.</li>
+
+        <li>Implement CAN bus communication.</li>
+
+        <li>Add remote diagnostics over Wi-Fi.</li>
+
+        <li>Support redundant safety monitoring.</li>
+
+        <li>Deploy on industrial hardware.</li>
+
+    </ul>
+
+</section>
+
+<footer>
+
+    <h3>Industrial Ride Control System</h3>
+
+    <p>
+
+        EEL 4775 – Real-Time Systems Final Integration Capstone
+
+    </p>
+
+    <p>
+
+        ESP32 • FreeRTOS • C++ • Wokwi
+
+    </p>
+
+</footer>
+
+</body>
+</html>
