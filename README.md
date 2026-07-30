@@ -1,6 +1,8 @@
 # Application 2: Industrial Ride Control System Analysis — Real-Time Systems Final Capstone
 
 ## Overview
+A ride control system built to demonstrate task schedulability for a themed entertainment engineering role
+
 This project implements a real-time industrial ride control system on Wokwi using FreeRTOS. The application demonstrates fixed-priority scheduling, worst-case execution time (WCET) measurement, schedulability analysis, and real-time system monitoring. Four periodic tasks execute on Core 1 while Core 0 provides either a serial monitoring interface or a Wi-Fi web dashboard for observing system performance.
 
 ## Demo
