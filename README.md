@@ -47,10 +47,15 @@ Using base WCET values: U = (584/1000/10) + (3913/1000/20) + (9085/1000/50) + (1
 Using +30% WCET values: U = (759.2/1000/10) + (5086.9/1000/20) + (11810.5/1000/50) + (25040.6/1000/100) = 0.8169
 
 Schedulable under EDF (U<1) and under RMS based on measured WCET values. Response-time analysis confirms that all tasks meet their deadlines, including the lowest priority (Task D).
+
     Base values: D = T = 100 ms
+    
     Rd(0) = Cd = 19262/1000 = 19.262 ms
+    
     Rd(1) = 19.262 + [19.262/10]*0.584 + [19.262/20]*3.913 + [19.262/50]*9.085 = 19.262 + 2*0.584 + 1*3.913 + 1*9.085 = 33.428 ms
+    
     Rd(2) = 19.262 + [33.428/10]*0.584 + [33.428/20]*3.913 + [33.428/50]*9.085 = 19.262 + 4*0.584 + 2*3.913 + 1*9.085 = 38.509 ms
+    
     Rd(3) = 19.262 + [38.509/10]*0.584 + [38.509/20]*3.913 + [38.509/50]*9.085 = 19.262 + 4*0.584 + 2*3.913 + 1*9.085 = 38.509 ms
 
 ## Hazard analysis & standard mapping
@@ -67,8 +72,11 @@ To demonstrate graceful degradation, the system was evaluated under increased ex
 
 ## Build & run
 Target: ESP32
+
 Framework: ESP-IDF
+
 Operating System: FreeRTOS
+
 Simulator: Wokwi
 
 Open the project in Wokwi, build using ESP-IDF, and run the simulation. Runtime statistics can be viewed through either the serial monitor or the web dashboard depending on the selected configuration.
